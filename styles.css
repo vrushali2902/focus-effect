@@ -1,0 +1,218 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+    overflow-x: hidden;
+}
+
+/* Navbar Styles */
+header {
+    background: #1e1e1e; /* Darker background for navbar */
+    padding: 15px 0;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: #e0e0e0; /* Light text color for links */
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #f39c12; /* Highlight color on hover */
+}
+
+/* Banner Styles */
+.banner {
+    position: relative;
+    text-align: center;
+    color: #e0e0e0; /* Light text color */
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(50%); /* Darker filter for dark mode */
+    transition: filter 0.3s ease;
+}
+
+.banner img:hover {
+    filter: brightness(70%); /* Slightly lighter on hover */
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7); /* Darker background for text */
+    padding: 20px;
+    border-radius: 8px;
+    animation: moveIn 1s ease-out forwards;
+}
+
+.banner-text h1 {
+    margin: 0;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.banner-text p {
+    font-size: 1.2em;
+}
+
+/* About Section Styles */
+#about {
+    padding: 40px 20px;
+    text-align: center;
+    background: #1e1e1e; /* Dark background */
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: 1200px; /* Max width for large screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Darker shadow */
+    animation: fadeInUp 1s ease-out;
+}
+
+#about h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #b2dfdb; /* Light cyan for headings */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); /* Darker shadow */
+}
+
+#about p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    color: #b2dfdb; /* Light cyan for text */
+}
+
+/* Footer Styles */
+footer {
+    background: #1e1e1e; /* Darker background for footer */
+    color: #e0e0e0; /* Light text color */
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5); /* Darker shadow */
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Continuous Scrolling Animation */
+@keyframes continuousScroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+.scroll-container {
+    position: relative;
+    overflow: hidden;
+    height: 300px; /* Adjust as needed */
+}
+
+.scroll-content {
+    position: absolute;
+    width: 100%;
+    animation: continuousScroll 10s linear infinite;
+}
+
+.scroll-content p {
+    margin: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Darker background for scrolling content */
+    color: #e0e0e0; /* Light text color */
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Animation and Effects */
+@keyframes moveIn {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar ul li {
+        display: block;
+        margin: 10px 0;
+    }
+    
+    .banner-text h1 {
+        font-size: 2.5em;
+    }
+    
+    .banner-text p {
+        font-size: 1em;
+    }
+    
+    #about h2 {
+        font-size: 2em;
+    }
+    
+    #about p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-text h1 {
+        font-size: 1.8em;
+    }
+    
+    .banner-text p {
+        font-size: 0.9em;
+    }
+    
+    #about h2 {
+        font-size: 1.8em;
+    }
+    
+    #about p {
+        font-size: 0.9em;
+    }
+}

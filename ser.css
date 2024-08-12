@@ -1,0 +1,447 @@
+body {
+    margin: 0;
+    background: #000; /* Dark background for dark mode */
+    height: 1300px;
+    font-family: Arial, sans-serif;
+    color: #e0e0e0; /* Light text color */
+    overflow-x: hidden;
+    position: relative; /* Ensure relative positioning for z-index */
+}
+
+/* Navbar Styles */
+header {
+    background: #1e1e1e; /* Darker background for dark mode */
+    padding: 15px 0;
+    text-align: center;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: #e0e0e0; /* Light text color */
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #f39c12; /* Accent color on hover */
+}
+
+
+/* Define custom properties for animation and scrollbar */
+@property --scroll-y-position {
+    syntax: "<percentage>";
+    initial-value: -10%;
+    inherits: false;
+}
+
+@property --reflection-y-position {
+    syntax: "<percentage>";
+    initial-value: -50%;
+    inherits: false;
+}
+
+@property --scrollbar-color {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: transparent;
+}
+
+@property --opacity-1 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0.1;
+}
+
+@property --opacity-2 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0.1;
+}
+
+@property --opacity-3 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0.1;
+}
+
+@property --opacity-4 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0.1;
+}
+
+@property --opacity-5 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0.1;
+}
+
+@property --opacity-6 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0.1;
+}
+
+@property --text-offset-1 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 10;
+}
+
+@property --text-offset-2 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 10;
+}
+
+@property --text-offset-3 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 10;
+}
+
+@property --text-offset-4 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 10;
+}
+
+@property --text-offset-5 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 10;
+}
+
+@property --text-offset-6 {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 10;
+}
+
+/* Hide default scrollbar */
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0;
+    background: black;
+    height: 1300px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    overflow-x: hidden;
+    position: relative; /* Ensure relative positioning for z-index */
+}
+
+/* Custom scrollbar and reflection effect */
+.scrollbar {
+    width: 4px;
+    height: 100%;
+    background-color: var(--scrollbar-color);
+    background-image: radial-gradient(
+        circle at 0% var(--scroll-y-position),
+        rgb(112, 153, 255) 0%,
+        rgba(56, 106, 249, 0.79135) 10px,
+        rgba(10, 76, 242, 0.53) 20px,
+        rgba(255, 255, 255, 0) 40px,
+        rgba(49, 49, 49, 0) 100%
+    );
+    animation: on-scrolling both linear;
+    animation-timeline: scroll();
+    animation-range: 10vh;
+    z-index: 10; /* Ensure scrollbar is above other elements */
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      132deg,
+      rgba(255, 255, 255, 0.09) 0%,
+      rgba(238, 238, 238, 0.03) 20%,
+      rgba(202, 202, 202, 0.04) 70%,
+      rgba(171, 171, 171, 0.02) 100%
+    );
+    border: solid rgba(255, 255, 255, 0.06) 1px;
+    margin-left: 15px;
+    position: relative;
+    z-index: 1; /* Ensure container is below scrollbar */
+}
+
+/* Blue line effect inside the container */
+.container::before,
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 76, 242, 0) 0%,
+    rgba(10, 76, 242, 0.75203) 38.288288288288285%,
+    rgb(77, 127, 255) 50.9132179054054%,
+    rgba(10, 76, 242, 0.75248) 63.06306306306306%,
+    rgba(10, 76, 242, 0) 100%
+  );
+  background-repeat: no-repeat;
+  background-position-y: var(--reflection-y-position);
+  animation: on-scrolling both linear;
+  animation-timeline: scroll();
+  animation-range: 10vh;
+  z-index: 5; /* Ensure reflection effect is visible */
+}
+
+.container::before {
+  background-size: 1px 150px;
+  filter: blur(1px);
+}
+
+.container::after {
+  background-size: 10px 150px;
+  filter: blur(10px);
+}
+
+/* Main layout */
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15vh;
+    padding-bottom: 15vh;
+}
+
+/* Service Cards Container */
+.services {
+    display: flex;
+    flex-direction: column; /* Change to column for vertical stacking */
+    align-items: center; /* Center align cards horizontally */
+    gap: 20px; /* Space between cards */
+    padding: 20px;
+}
+
+/* Service Card */
+.service-card {
+    background-image: linear-gradient(
+      270deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.9) 90%,
+      rgb(191, 209, 255) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    padding: 20px;
+    line-height: 1.5em;
+    animation: on-scrolling both linear;
+    animation-timeline: scroll();
+    animation-range: 10vh;
+
+    box-sizing: border-box; /* Ensure padding is included in the height */
+    width: 100%; /* Ensure cards take full width of container */
+    max-width: 600px; /* Optional: Set a max-width for better readability */
+    /* Ensure all cards start from the same point */
+    margin: 0; /* Remove any default margins */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Optional: Add a border */
+    border-radius: 8px; /* Optional: Rounded corners */
+    background-color: rgba(255, 255, 255, 0.1); /* Optional: Background color */
+}
+
+
+.service-card h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+/* Footer Styles */
+footer {
+    background: #1e1e1e; /* Darker background */
+    color: #e0e0e0; /* Light text color */
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Animation */
+/* Updated Keyframes for Improved Visibility */
+/* Updated Keyframes for Improved Visibility */
+@keyframes on-scrolling {
+    0% {
+        --scroll-y-position: -10%;
+        --reflection-y-position: -18%;
+        --opacity-1: 0.1;
+        --opacity-2: 0.1;
+        --opacity-3: 0.1;
+        --opacity-4: 0.1;
+        --opacity-5: 0.1;
+        --opacity-6: 0.1;
+        --text-offset-1: 10;
+        --text-offset-2: 10;
+        --text-offset-3: 10;
+        --text-offset-4: 10;
+        --text-offset-5: 10;
+        --text-offset-6: 10;
+    }
+    25% {
+        --scrollbar-color: rgba(255, 255, 255, 0.1);
+        --opacity-1: 1;
+        --opacity-2: 0.8;
+        --opacity-3: 0.6;
+        --opacity-4: 0.4;
+        --opacity-5: 0.3;
+        --opacity-6: 0.2;
+        --text-offset-1: 0;
+        --text-offset-2: 5;
+        --text-offset-3: 10;
+        --text-offset-4: 15;
+        --text-offset-5: 20;
+        --text-offset-6: 25;
+    }
+    50% {
+        --scroll-y-position: 50%;
+        --reflection-y-position: 50%;
+        --opacity-1: 0.8;
+        --opacity-2: 1;
+        --opacity-3: 0.8;
+        --opacity-4: 0.6;
+        --opacity-5: 0.4;
+        --opacity-6: 0.3;
+        --text-offset-1: 10;
+        --text-offset-2: 5;
+        --text-offset-3: 0;
+        --text-offset-4: 15;
+        --text-offset-5: 20;
+        --text-offset-6: 25;
+    }
+    75% {
+        --opacity-1: 0.6;
+        --opacity-2: 0.8;
+        --opacity-3: 1;
+        --opacity-4: 0.8;
+        --opacity-5: 0.6;
+        --opacity-6: 0.5;
+        --text-offset-1: 15;
+        --text-offset-2: 10;
+        --text-offset-3: 5;
+        --text-offset-4: 0;
+        --text-offset-5: 25;
+        --text-offset-6: 20;
+    }
+    90% {
+        --opacity-1: 0.4;
+        --opacity-2: 0.6;
+        --opacity-3: 0.8;
+        --opacity-4: 0.8;
+        --opacity-5: 0.4;
+        --opacity-6: 0.3;
+        --text-offset-1: 25;
+        --text-offset-2: 20;
+        --text-offset-3: 15;
+        --text-offset-4: 10;
+        --text-offset-5: 5;
+        --text-offset-6: 0;
+    }
+    100% {
+        --scroll-y-position: 105%;
+        --reflection-y-position: 115%;
+        --scrollbar-color: rgba(255, 255, 255, 0.1);
+        --opacity-1: 0.1; /* Faint */
+        --opacity-2: 0.2; /* Faint */
+        --opacity-3: 0.4; /* Faint */
+        --opacity-4: 0.6; /* Faint */
+        --opacity-5: 0.1; /* More faint */
+        --opacity-6: 0.1; /* Most faint */
+        --text-offset-1: 25;
+        --text-offset-2: 20;
+        --text-offset-3: 15;
+        --text-offset-4: 10;
+        --text-offset-5: 5;
+        --text-offset-6: 0;
+    }
+}
+
+/* Apply different opacity and text offset to each card */
+.service-card:nth-child(1) {
+    --opacity: var(--opacity-1);
+    --text-offset: var(--text-offset-1);
+}
+
+.service-card:nth-child(2) {
+    --opacity: var(--opacity-2);
+    --text-offset: var(--text-offset-2);
+}
+
+.service-card:nth-child(3) {
+    --opacity: var(--opacity-3);
+    --text-offset: var(--text-offset-3);
+}
+
+.service-card:nth-child(4) {
+    --opacity: var(--opacity-4);
+    --text-offset: var(--text-offset-4);
+}
+
+.service-card:nth-child(5) {
+    --opacity: var(--opacity-5);
+    --text-offset: var(--text-offset-5);
+}
+
+.service-card:nth-child(6) {
+    --opacity: var(--opacity-6);
+    --text-offset: var(--text-offset-6);
+}
+
+.service-card {
+    opacity: var(--opacity);
+    transform: translateY(calc(var(--text-offset) * 1px));
+}
+
+
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
